@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('cups', function (Blueprint $table) {
             $table->id();
             $table->string('title')->nullable()->unique();
-            $table->longText('sub_title')->nullable()->unique();
+            $table->longText('sub_title')->nullable();
             $table->string('slug')->nullable()->unique();
             $table->string('amount')->nullable();
             $table->string('donate')->nullable();
@@ -19,6 +19,7 @@ return new class extends Migration
                 ->constrained('users')
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
+            $table->softDeletes();
             $table->timestamps();
 
         });
